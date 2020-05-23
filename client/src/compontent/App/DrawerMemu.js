@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -34,7 +34,23 @@ const drawerMemuStyle = makeStyles((theme) =>
 const generateDrawerMemu = (props) => {
     const classes = drawerMemuStyle();
     const { open } = props;
-
+    const [memuList, setMemuList] = RuseState([
+        {
+            id: 1,
+            name: 'Inbox',
+            history: 'Inbox'
+        },
+        {
+            id: 2,
+            name: 'Starred',
+            history: 'Starred'
+        },
+        {
+            id: 3,
+            name: 'Drafts',
+            history: 'Drafts'
+        },
+    ]);
     return (
         <Drawer
             className={classes.drawer}

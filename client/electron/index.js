@@ -17,7 +17,7 @@ function createWindow() {
             label: '退出',
             click: () => {
                 appTray.destroy()
-                app.quit();
+                app.exit();
             }
         }
     ];
@@ -32,12 +32,11 @@ function createWindow() {
     appTray.setContextMenu(contextMenu);
 
     appTray.on('double-click', () => {
-        console.dir(win);
         win.show()
         win.focus()
     })
     // Emitted when the window is closed.
-    win.on('closed', (event) => {
+    win.on('closed', () => {
         win = null;
     })
     win.on('close', (event) => {

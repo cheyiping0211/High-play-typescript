@@ -34,7 +34,7 @@ const drawerMemuStyle = makeStyles((theme) =>
 const generateDrawerMemu = (props) => {
     const classes = drawerMemuStyle();
     const { open } = props;
-    const [memuList, setMemuList] = RuseState([
+    const [memuList, setMemuList] = useState([
         {
             id: 1,
             name: 'Inbox',

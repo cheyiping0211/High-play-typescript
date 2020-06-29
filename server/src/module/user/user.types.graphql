@@ -1,0 +1,54 @@
+type Query {
+    # #是代码里的注释，""" """是 graphql 文档中的注释
+    """查询一个用户"""
+    findOneUser(id: Int!): UserResponse
+    findUsers: UsersResponse
+}
+
+type Mutation {
+    createUser(user: UserInput!): CommonResponse
+    deleteUser(id: Int!): CommonResponse
+    updateUser(id: Int!, user: UserInput!): CommonResponse
+    userLogin(user: UserLoginInput!): loginResponse
+}
+
+type CommonResponse {
+    code: Int
+    message: String
+}
+
+type loginResponse {
+    code: Int
+    message: String
+    data: String
+}
+
+type UserResponse {
+    code: Int
+    message: String
+    data: User
+}
+
+type UsersResponse {
+    code: Int
+    message: String
+    data: [User]
+}
+
+type User {
+    id: Int
+    username: String
+    password: String
+    avatar: String
+}
+
+input UserInput {
+    username: String
+    password: String
+    avatar: String
+}
+
+input UserLoginInput {
+    username: String
+    password: String
+}

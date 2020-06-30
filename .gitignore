@@ -2,3 +2,4 @@ go.sum
 go.mod
 .gitignore
 /static/*
+client/package-lock.json

@@ -38,7 +38,6 @@ type UsersResponse {
 type User {
     id: Int
     username: String
-    password: String
     avatar: String
 }
 

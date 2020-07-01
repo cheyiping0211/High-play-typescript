@@ -1,0 +1,50 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 96969
+      MYSQL_DATABASE: app
+    container_name: highPlayDB  
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - db_data:/var/lib/mysql
+  server:
+    build:
+      context: ./server/
+    container_name: highPlayServer
+    command: npm run start:dev
+    depends_on:
+      - db
+    links:
+      - db
+    volumes:
+      - ./server/:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"  
+    # env_file: ./server/.env # TODO - uncomment this to auto-load your .env file!
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+  client:
+    build:
+      context: ./client/
+    container_name: highPlayClient
+    command: npm run start
+    volumes:
+      - ./client/:/usr/app
+      - /usr/app/node_modules
+    depends_on:
+      - server
+    ports:
+      - "8080:8080"
+volumes:
+  db_data:

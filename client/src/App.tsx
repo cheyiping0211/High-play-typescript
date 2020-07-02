@@ -22,7 +22,7 @@ const Routes = (props: any) => {
   const users = useSelector(state => state['user'].users);
 
   useEffect(() => {
-    dispatch(get_users(3));
+    dispatch(get_users(1));
   })
 
   return (

@@ -1,6 +1,8 @@
-go.sum
-go.mod
+.dockerignore
+.git
 .gitignore
-/static/*
+.prettierrc
+**/node_modules
+server/dist/*
+server/package-lock.json
 client/package-lock.json
-client/yarn.lock

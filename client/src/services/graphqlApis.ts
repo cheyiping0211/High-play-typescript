@@ -12,7 +12,7 @@ export default class GraphQl {
 
     constructor() {
         const httpLink = createHttpLink({
-            uri: "http://192.168.244.128:3000/graphql",
+            uri: "http://192.168.106.128:3000/graphql",
         });
         const authLink = setContext((_, { headers }) => {
             const token = localStorage.getItem("access_token");

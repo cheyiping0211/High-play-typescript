@@ -1,10 +1,10 @@
-import React, { useEffect } from "react"
-import { Chart } from '@antv/g2'
+import React, { useState, useEffect } from "react"
 import { Switch, Statistic } from 'antd'
-import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons'
-
+import { ArrowUpOutlined } from '@ant-design/icons'
+import Area from '../../components/Dashboard/Area'
 const Home = () => {
-    const data = [
+
+    const [data, setData] = useState([
         { year: '1991', value: 15468 },
         { year: '1992', value: 16100 },
         { year: '1993', value: 15900 },
@@ -14,7 +14,7 @@ const Home = () => {
         { year: '1997', value: 31982 },
         { year: '1998', value: 32040 },
         { year: '1999', value: 33233 },
-    ];
+    ]);
 
     const listData = [
         {
@@ -32,44 +32,15 @@ const Home = () => {
     ];
 
     useEffect(() => {
-        const chart = new Chart({
-            container: 'messageChart',
-            autoFit: true,
-            height: 200,
-            width: 530,
-        });
-        chart.data(data);
-        chart.scale({
-            value: {
-                min: 10000,
-                nice: true,
-            },
-            year: {
-                range: [0, 1],
-            },
-        });
-        chart.tooltip({
-            showCrosshairs: true,
-            shared: true,
-        });
-
-        chart.axis('value', {
-            label: {
-                formatter: (val) => {
-                    return (+val / 10000).toFixed(1) + 'k';
-                },
-            },
-        });
-
-        chart.area().position('year*value');
-        chart.line().position('year*value');
-        chart.render();
-    }, [])
+        setInterval(() => {
+            // setData(data.map((item, _index) => _index < 5 ? { ...item, value: item.value + 5000 } : item))
+        }, 2000)
+    })
 
     return (
         <div className="home" >
             <div className="chart">
-                <div id="messageChart" />
+                <Area elId="messageChart" width={530} height={280} data={data} />
                 <div className="statistic">
                     <Statistic
                         title="User"

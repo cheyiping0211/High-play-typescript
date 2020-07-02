@@ -3,3 +3,4 @@ go.mod
 .gitignore
 /static/*
 client/package-lock.json
+client/yarn.lock

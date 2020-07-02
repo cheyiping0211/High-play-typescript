@@ -19,6 +19,7 @@ export const GET_USER_FIND = gql`
          {
             id
             username
+            avatar
          }
         }
     }

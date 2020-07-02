@@ -7,7 +7,7 @@ import graphqlApi from "./services/graphqlApis";
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import Store from './store'
-import './assets/css/index.css';
+import './assets/css/index.less';
 
 
 const { client } = new graphqlApi();

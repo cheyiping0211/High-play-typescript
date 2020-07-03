@@ -24,6 +24,7 @@
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/graphql": "^7.4.6",
+    "@nestjs/microservices": "^7.3.1",
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/platform-socket.io": "^7.3.1",
     "@nestjs/typeorm": "^7.1.0",
@@ -37,6 +38,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
+    "socket.io-redis": "^5.3.0",
+    "socketio-jwt": "^4.6.2",
     "type-graphql": "^1.0.0-rc.2",
     "typeorm": "^0.2.25"
   },

@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 //es5 ↑ AMD→范式
 import { HttpException, Injectable } from '@nestjs/common';
+import { Client, ClientProxy, Transport } from '@nestjs/microservices'
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from './user.entity';
@@ -11,6 +12,12 @@ export class UserService {
     constructor(
         @InjectRepository(Users) private readonly userModel: Repository<Users>,  // 使用泛型注入对应类型的存储库实例
     ) { }
+
+    @Client({
+        options: { host: '0.0.0.0', port: 8080 },
+        transport: Transport.TCP,
+    })
+    private client: ClientProxy
     /**
     * 登陆
     *
@@ -54,8 +61,7 @@ export class UserService {
 
         if (!isCreate) {
             // User does not exists
-
-            const passwordHashed = await bcrypt.hash(password, saltRounds);
+            const passwordHashed = await bcrypt.hash(password, 10);
             return this.userModel.save(this.userModel.create(
                 {
                     username,
@@ -94,6 +100,12 @@ export class UserService {
      */
     async findUsers(): Promise<Users[]> {
         return await this.userModel.find();
+    }
+    /**
+     * 查询有多少用户
+     */
+    async findUserCount(): Promise<number> {
+        return await this.userModel.count();
     }
     /**
      * 根据ID查询

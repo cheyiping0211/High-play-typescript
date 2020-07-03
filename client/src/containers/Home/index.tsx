@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react"
 import { Switch, Statistic } from 'antd'
+import {
+    useDispatch
+} from 'react-redux'
+import { watch_users, get_userList } from '../../store/actions'
 import { ArrowUpOutlined } from '@ant-design/icons'
+
 import Area from '../../components/Dashboard/Area'
+import Pie from '../../components/Dashboard/Pie'
+
 const Home = () => {
 
-    const [data, setData] = useState([
+    const [data] = useState([
         { year: '1991', value: 15468 },
         { year: '1992', value: 16100 },
         { year: '1993', value: 15900 },
@@ -16,31 +23,29 @@ const Home = () => {
         { year: '1999', value: 33233 },
     ]);
 
-    const listData = [
-        {
-            title: 'SETTING',
-        },
-        {
-            title: 'Ant Design Title 2',
-        },
-        {
-            title: 'Ant Design Title 3',
-        },
-        {
-            title: 'Ant Design Title 4',
-        },
+    const categoryData = [
+        { type: '分类一', value: 20 },
+        { type: '分类二', value: 18 },
+        { type: '分类三', value: 32 },
+        { type: '分类四', value: 15 },
+        { type: 'Other', value: 15 },
     ];
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        setInterval(() => {
-            // setData(data.map((item, _index) => _index < 5 ? { ...item, value: item.value + 5000 } : item))
-        }, 2000)
+        dispatch(watch_users());
     })
+
+    const getUsers = () => {
+        dispatch(get_userList());
+    }
 
     return (
         <div className="home" >
             <div className="chart">
-                <Area elId="messageChart" width={530} height={280} data={data} />
+                <Area elId="messageChart" width={530} height={260} data={data} />
+                <Pie elId="categoryChart" width={530} height={180} data={categoryData} />
                 <div className="statistic">
                     <Statistic
                         title="User"
@@ -72,11 +77,11 @@ const Home = () => {
                 <div className="title">
                     SETTING
                 </div>
-                {listData.map((item, index) =>
+                {categoryData.map((item, index) =>
                     <div className="item" key={index}>
                         <p>KEY</p>
                         <p>STATUS</p>
-                        <Switch checkedChildren="NO" unCheckedChildren="OFF" defaultChecked />
+                        <Switch checkedChildren="NO" unCheckedChildren="OFF" defaultChecked onClick={getUsers} />
                     </div>
                 )
                 }

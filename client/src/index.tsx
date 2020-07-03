@@ -9,7 +9,6 @@ import App from './App';
 import Store from './store'
 import './assets/css/index.less';
 
-
 const { client } = new graphqlApi();
 const app = (
   <ApolloProvider client={client}>

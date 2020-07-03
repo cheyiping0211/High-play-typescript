@@ -7,8 +7,8 @@ const graphQlRequest = new GraphQlApi();
 
 export function get_users(id: number) {
 
-    function success(user: userResponse) {
-        return { type: actionTypes.userConstants.FETCH_USER_SUCCESS, user };
+    function success(users: userResponse) {
+        return { type: actionTypes.FETCH_USERS, users };
     }
 
     return async (dispatch: Dispatch) => {
@@ -24,14 +24,31 @@ export function get_users(id: number) {
 
 export function get_userList() {
 
-    function success(user: userResponse) {
-        return { type: actionTypes.userConstants.FETCH_USER_SUCCESS, user };
+    function success(userList: userResponse) {
+        return { type: actionTypes.FETCH_USERLIST, userList };
     }
 
     return async (dispatch: Dispatch) => {
         try {
             const userList = await graphQlRequest.getUserList();
             dispatch(success(userList));
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
+}
+
+export function watch_users() {
+
+    function success(watchUsers) {
+        return { type: actionTypes.FETCH_WATCH_USERS, watchUsers };
+    }
+
+    return async (dispatch: Dispatch) => {
+        try {
+            const watchUsers = await graphQlRequest.watchUsers();
+            dispatch(success(watchUsers));
         } catch (error) {
             console.log(error);
             throw error;

@@ -36,3 +36,15 @@ export const GET_USER_LIST = gql`
         }
     }
 `;
+
+export const WATCH_USERS = gql`
+    subscription{
+        watchUsers{
+        data{
+            count
+            code
+            message
+        }
+        }
+    }
+`;

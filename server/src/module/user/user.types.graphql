@@ -12,6 +12,20 @@ type Mutation {
     userLogin(user: UserLoginInput!): loginResponse
 }
 
+type Subscription{
+    watchUsers: watchUsersResponse
+}
+
+type watchUsersResponse {
+    data: watchUsersData
+}
+
+type watchUsersData{
+    code: Int
+    message: String
+    count: Int
+}
+
 type CommonResponse {
     code: Int
     message: String

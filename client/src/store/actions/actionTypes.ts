@@ -1,3 +1,0 @@
-export const FETCH_USERS = "FETCH_USERS";
-export const FETCH_USERLIST = "FETCH_USERLIST";
-export const FETCH_WATCH_USERS = "FETCH_WATCH_USERS";

@@ -2,7 +2,8 @@ import { Module } from '@nestjs/common';
 
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './module/user/user.module'
+import { UserModule } from './module/user/user.module';
+import { GenericModule } from './module/generic/generic.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { UserModule } from './module/user/user.module'
       playground: true,
     }),
     UserModule,
+    GenericModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}

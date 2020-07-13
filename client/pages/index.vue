@@ -1,17 +1,15 @@
 <template>
-    <div class="home">
-        <Map />
-    </div>
+    <transition name="index" mode="out-in">
+        <div class="home">
+            <Map />
+        </div>
+    </transition>
 </template>
 
 <script>
 import Vue from 'vue';
 import Map from '@/components/Map';
 export default Vue.extend({
-    components: { Map },
+    layout: 'home',
 });
 </script>
-
-<style lang="scss">
-@import '@/assets/styles/index.scss';
-</style>

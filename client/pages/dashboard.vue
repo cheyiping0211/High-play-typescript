@@ -39,7 +39,8 @@ import Vue from 'vue';
 import { GET_USER_LIST, WATCH_USERS } from '@/services/queries';
 import Area from '@/components/Dashboard/Area';
 import Pie from '@/components/Dashboard/Pie';
-export default Vue.extend({
+export default {
+    loading: true,
     data() {
         return {
             userList: [],
@@ -64,6 +65,7 @@ export default Vue.extend({
             ],
         };
     },
+    layout: 'home',
     components: { Area, Pie },
     apollo: {
         $subscribe: {
@@ -91,9 +93,5 @@ export default Vue.extend({
             console.log(this.data);
         },
     },
-});
+};
 </script>
-
-<style lang="scss">
-@import '@/assets/styles/index.scss';
-</style>

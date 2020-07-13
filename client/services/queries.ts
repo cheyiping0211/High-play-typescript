@@ -7,7 +7,6 @@ mutation($user:UserLoginInput!) {
       message
     }
   }
-  
 `;
 
 export const GET_USER_FIND = gql`

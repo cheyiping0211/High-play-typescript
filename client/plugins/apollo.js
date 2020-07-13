@@ -12,7 +12,7 @@ export default ctx => {
         uri: "http://192.168.244.128:3000/graphql",
     });
     const authLink = setContext((_, { headers }) => {
-        const token = localStorage.getItem("access_token");
+        const token = sessionStorage.getItem("access_token");
         return {
             headers: {
                 ...headers,

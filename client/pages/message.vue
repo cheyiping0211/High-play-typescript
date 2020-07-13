@@ -1,17 +1,13 @@
 <template>
     <div class="home">
-        <Login />
+        <City />
     </div>
 </template>
 
 <script>
-import Vue from 'vue';
-import Login from '@/components/Layouts/Login';
-export default Vue.extend({
-    components: { Login },
-});
+import City from '@/components/Layouts/City';
+export default {
+    layout: 'home',
+    components: { City },
+};
 </script>
-
-<style lang="scss">
-@import '@/assets/styles/index.scss';
-</style>

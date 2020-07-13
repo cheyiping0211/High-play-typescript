@@ -1,7 +1,7 @@
 <template>
     <a-form id="components-form-demo-normal-login" :form="form" class="login-form" @submit="handleSubmit">
         <a-form-item>
-            <a-input v-decorator="['userName', { rules: [{ required: true, message: 'Please input your username!' }] }]" placeholder="Username">
+            <a-input v-decorator="['username', { rules: [{ required: true, message: 'Please input your username!' }] }]" placeholder="Username">
                 <a-icon slot="prefix" type="user" style="color: rgba(0, 0, 0, 0.25);" />
             </a-input>
         </a-form-item>
@@ -11,7 +11,8 @@
             </a-input>
         </a-form-item>
         <a-form-item>
-            <a-checkbox
+            <!-- <a-checkbox
+                class="remember"
                 v-decorator="[
                     'remember',
                     {
@@ -21,17 +22,10 @@
                 ]"
             >
                 Remember me
-            </a-checkbox>
-            <a class="login-form-forgot" href="">
-                Forgot password
-            </a>
+            </a-checkbox> -->
             <a-button type="primary" html-type="submit" class="login-form-button">
                 Log in
             </a-button>
-            Or
-            <a href="">
-                register now!
-            </a>
         </a-form-item>
     </a-form>
 </template>
@@ -41,11 +35,15 @@ export default {
     beforeCreate() {
         this.form = this.$form.createForm(this, { name: 'normal_login' });
     },
+    props: {
+        getUser: Function,
+    },
     methods: {
         handleSubmit(e) {
             e.preventDefault();
             this.form.validateFields((err, values) => {
                 if (!err) {
+                    this.$emit('getUser', values);
                     console.log('Received values of form: ', values);
                 }
             });

@@ -4,7 +4,7 @@
         <div>
             <Aside :getUser="user" @setMemuItem="getMemuItem" />
             <div class="body">
-                <Nuxt />
+                <Nuxt :getUser="user" />
             </div>
         </div>
     </div>
@@ -12,7 +12,6 @@
 
 <script>
 import Vue from 'vue';
-import Map from '@/components/Map';
 import { GET_USER_FIND } from '@/services/queries';
 import Aside from '@/components/Layouts/Aside';
 import Header from '@/components/Layouts/Header';
@@ -30,7 +29,7 @@ export default Vue.extend({
             },
         };
     },
-    components: { Header, Aside, Map },
+    components: { Header, Aside },
     apollo: {
         user: {
             query: GET_USER_FIND,

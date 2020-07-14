@@ -9,7 +9,7 @@
                         <a-icon type="arrow-up" />
                     </template>
                 </a-statistic>
-                <a-statistic title="Online user" :value="9.3" :precision="2" suffix="在线用户" class="demo-class" :value-style="{ color: '#12d284' }">
+                <a-statistic title="Online user" :value="onlineUser" :precision="2" suffix="在线用户" class="demo-class" :value-style="{ color: '#12d284' }">
                     <template #prefix>
                         <a-icon type="arrow-up" />
                     </template>
@@ -67,6 +67,12 @@ export default {
     },
     layout: 'home',
     components: { Area, Pie },
+    computed: {
+        onlineUser: function () {
+            var count = Array.isArray(this.userList) && this.userList.length ? this.userList.filter(item => item.online == '1').length : 0;
+            return count;
+        },
+    },
     apollo: {
         $subscribe: {
             watchUsers: {

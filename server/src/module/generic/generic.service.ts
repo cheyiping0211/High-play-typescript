@@ -4,7 +4,7 @@ import * as fs from 'fs';
 @Injectable()
 export class GenericService {
   async getCityData(res) {
-    const file = join(__dirname, './city.json'); //文件路径，__dirname为当前运行js文件的目录
+    const file = join(__dirname, './china.json'); //文件路径，__dirname为当前运行js文件的目录
     fs.readFile(file, 'utf-8', (err, data) => {
       if (err) {
         res.json({

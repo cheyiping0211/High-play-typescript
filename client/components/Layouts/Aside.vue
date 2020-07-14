@@ -55,10 +55,6 @@ export default {
     },
     props: {
         getUser: Object,
-        default: {
-            username: 'haha',
-            avatar: String,
-        },
         setMemuItem: Function,
     },
     watch: {

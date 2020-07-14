@@ -54,7 +54,7 @@ export default {
     },
     proxy: {
         '/api': {
-            target: 'http://192.168.244.128:3000', //页面仍然显示 http://localhost:3000,但实际上是
+            target: 'http://192.168.244.128:3000',
         },
     },
     apollo: {

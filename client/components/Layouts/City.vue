@@ -37,7 +37,7 @@ export default {
     methods: {
         async getCityData() {
             try {
-                const { data } = await this.$axios.get('/getCity');
+                const { data } = await this.$axios.get('/getChina');
                 this.chinaData = data.data;
             } catch {}
         },

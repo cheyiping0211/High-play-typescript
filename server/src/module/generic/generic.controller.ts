@@ -5,7 +5,7 @@ import { GenericService } from './generic.service';
 export class GenericController {
   constructor(private readonly appService: GenericService) {}
 
-  @Get('/api/getCity')
+  @Get('/api/getChina')
   async getConfig(@Res() res) {
     return await this.appService.getCityData(res);
   }

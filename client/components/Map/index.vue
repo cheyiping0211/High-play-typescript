@@ -14,7 +14,7 @@ export default {
         },
     },
     mounted() {
-        this.initMap();
+        if (Array.isArray(this.userfriend) && this.userfriend.length) this.initMap();
     },
     methods: {
         initMap() {
@@ -29,12 +29,22 @@ export default {
             });
             this.map = map;
 
-            const markerGroup = L.layerGroup().addTo(this.map);
+            const markerGroup = new L.layerGroup().addTo(this.map);
             this.map.addLayer(markerGroup);
             this.map.invalidateSize(true);
             this.settingIcon();
-            this.settingCircleAndMarker();
+            this.settingPolyline();
+            this.settingCircleAndMarker(markerGroup);
             L.tileLayer.baiduLayer().addTo(this.map);
+        },
+        settingPolyline() {
+            new L.polyline(
+                [
+                    [31, 121],
+                    [31.12161, 121.359879],
+                ],
+                { weight: 2, className: 'polyLine', opacity: 0.5 }
+            ).addTo(this.map);
         },
         settingIcon() {
             delete L.Icon.Default.prototype._getIconUrl;
@@ -44,32 +54,28 @@ export default {
                 shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
             });
         },
-        settingCircleAndMarker() {
-            const positionIcon = L.icon({
-                iconUrl: '/position.png',
-                iconSize: [40, 40],
-            });
-
-            const markerGroup = L.layerGroup().addTo(this.map);
-
-            Array.isArray(this.userfriend) &&
-                this.userfriend.length &&
-                this.userfriend.forEach((item, index) => {
-                    this.circle = new L.circle([item.lat, item.lng], 500, {
-                        color: '#12d284',
-                        fillOpacity: 0.5,
-                    }).addTo(this.map);
-                    console.log(this.circle);
-                    this.marker = new L.marker([item.lat, item.lng], { icon: positionIcon }).addTo(markerGroup);
-                    this.marker.dragging.enable();
-                    this.marker.on('dragend', event => {
-                        const { lat, lng } = this.marker.getLatLng();
-                        this.circle.setLatLng([lat, lng]);
-                    });
+        settingCircleAndMarker(group) {
+            this.userfriend.forEach((item, index) => {
+                var circle, marker;
+                const positionIcon = L.divIcon({
+                    html: item.name,
+                    className: `${item.name === 'UZI' ? 'positionIcon' : ''}`,
+                    iconSize: [40, 40],
+                    color: '#ffffff',
                 });
+                circle = new L.circle([item.lat, item.lng], 500, {
+                    color: 'red',
+                    fillOpacity: 0.5,
+                }).addTo(group);
+
+                marker = new L.marker([item.lat, item.lng], { icon: positionIcon }).addTo(group);
+                marker.dragging.enable();
+                marker.on('dragend', event => {
+                    const { lat, lng } = marker.getLatLng();
+                    circle.setLatLng([lat, lng]);
+                });
+            });
         },
     },
 };
 </script>
-
-<style scoped></style>

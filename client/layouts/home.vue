@@ -52,5 +52,5 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import '@~static/styles/index.scss';
+@import '@/assets/styles/index.scss';
 </style>

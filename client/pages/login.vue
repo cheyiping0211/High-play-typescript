@@ -37,5 +37,5 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import '~/static/styles/login.scss';
+@import '~/assets/styles/login.scss';
 </style>

@@ -1,7 +1,7 @@
 <template>
     <transition name="index" mode="out-in">
         <div class="home">
-            <Map :userfriend="user.userfriend || []" />
+            <Map v-if="Array.isArray(user.userfriend) && user.userfriend.length" :userfriend="user.userfriend" />
         </div>
     </transition>
 </template>
